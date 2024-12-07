@@ -1,0 +1,13 @@
+#!/usr/bin/env gosh
+
+[def [abs x] [if [< x 0] [- x] x]]
+
+result:=0
+paste <(cut -w -f1 input | sort -n) <(cut -w -f2 input | sort -n) | {
+	for a,b in [readlines | map split] {
+		result+=[- $a $b | abs]
+	}
+}
+
+[assert [== $result 2176849]]
+
