@@ -1,0 +1,16 @@
+#!/usr/bin/env gosh
+
+xs:=[]
+h:=[dict::new]
+for a,b in [readlines "input" | map split] {
+	xs+=$a
+	n:=[dict::get $h $b 0]
+	[dict::set $h $b [+ $n 1]]
+}
+
+result:=0
+for x in $xs {
+	result+=[* $x [dict::get $h $x 0]]
+}
+[assert [== $result 23384288]]
+
