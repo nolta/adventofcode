@@ -1,0 +1,18 @@
+#!/usr/bin/env gosh
+
+sum:=0
+on:=true
+grep -Eo 'mul\(\d+,\d+\)|do\(\)|don\'t\(\)' < input | {
+	for m in [readlines] {
+		if [== $m "do()"] {
+			on=true
+		} elif [== $m "don't()" ] {
+			on=false
+		} elif $on {
+			a,b:=[re::capture $m 'mul\((\d+),(\d+)\)']
+			sum+=[* $a $b]
+		}
+	}
+}
+
+[assert [== $sum 62098619]]
