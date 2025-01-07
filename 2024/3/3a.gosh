@@ -3,7 +3,7 @@
 sum:=0
 grep -Eo 'mul\(\d+,\d+\)' < input | {
 	for m in [readlines] {
-		a,b:=[re::capture $m 'mul\((\d+),(\d+)\)']
+		_,a,b:=[re::captures $m 'mul\((\d+),(\d+)\)']
 		sum+=[* $a $b]
 	}
 }

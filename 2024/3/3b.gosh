@@ -9,7 +9,7 @@ grep -Eo 'mul\(\d+,\d+\)|do\(\)|don\'t\(\)' < input | {
 		} elif [== $m "don't()" ] {
 			on=false
 		} elif $on {
-			a,b:=[re::capture $m 'mul\((\d+),(\d+)\)']
+			_,a,b:=[re::captures $m 'mul\((\d+),(\d+)\)']
 			sum+=[* $a $b]
 		}
 	}
